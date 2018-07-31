@@ -34,31 +34,9 @@ var roleRepair = {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#FFFF00'}});
                 }
             } else {
-                var target = creep.pos.findClosestByPath(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_EXTENSION ||
-                            structure.structureType == STRUCTURE_SPAWN ||
-                            structure.structureType == STRUCTURE_TOWER) && structure.energy < structure.energyCapacity;
-                    }
-                });
-                if(target) {
-                    
-                    if(creep.transfer(target, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                        var path = creep.pos.findPathTo(target);
-                        if(path.length > 0) {
-                            creep.move(path[0].direction);
-                            //creep.pos.createConstructionSite(STRUCTURE_ROAD);
-                        } else {
-                            creep.say(`No way!`);
-                        }
-                        //creep.moveTo(target);
-                    }
-                } else {
-                    if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(creep.room.controller);
-                    }
+                if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(creep.room.controller);
                 }
-
             }
         } else {
             /*
