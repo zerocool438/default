@@ -17,6 +17,7 @@ var roleRanger = {
             if(creep.room.name == creep.memory.target_room) {
 
                 var target = creep.pos.findClosestByPath(FIND_CONSTRUCTION_SITES);
+                //var target = Game.getObjectById('a73713380de6487');
                 if(target) {
                     creep.moveTo(target, {visualizePathStyle: {stroke: '#FF0000'}});
                 } else {

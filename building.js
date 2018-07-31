@@ -44,5 +44,6 @@ exports.run = function(spawn) {
         spawn.spawnCreep(workerBody, 'r1', {memory: {role: 'repair'}});
         spawn.spawnCreep(workerBody, 'r2', {memory: {role: 'repair'}});
     }
+    //spawn.spawnCreep([WORK,CARRY,MOVE], 'rg1', {memory: {role: 'ranger'}});
 
 }

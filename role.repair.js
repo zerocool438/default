@@ -33,6 +33,17 @@ var roleRepair = {
                 if(creep.repair(targets[0]) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(targets[0], {visualizePathStyle: {stroke: '#FFFF00'}});
                 }
+            } else {
+                var source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
+                if(source && creep.harvest(source) == ERR_NOT_IN_RANGE) {
+                    var path = creep.pos.findPath(creep.pos, source, ignoreCreeps);
+                    if(path.length > 0) {
+                        creep.move(path[0].direction);
+                        //creep.pos.createConstructionSite(STRUCTURE_ROAD);
+                    } else {
+                        creep.say(`No way!`);
+                    }
+                }
             }
         } else {
             /*

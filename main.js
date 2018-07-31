@@ -9,6 +9,7 @@ var tower = require('tower');
 module.exports.loop = function () {
 
     Memory.ranger_target = 'undefined';
+    //Memory.ranger_target = 'W1N9';
 
     building.run(Game.spawns.Spawn1);
 
