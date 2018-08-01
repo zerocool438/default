@@ -36,7 +36,7 @@ var roleRepair = {
             } else {
                 var source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
                 if(source && creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                    var path = creep.pos.findPath(creep.pos, source, ignoreCreeps);
+                    var path = creep.pos.findPath(creep.pos, source.pos, {ignoreCreeps: true});
                     if(path.length > 0) {
                         creep.move(path[0].direction);
                         //creep.pos.createConstructionSite(STRUCTURE_ROAD);
