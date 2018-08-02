@@ -12,6 +12,7 @@ var roleRanger = {
     /** @param {Creep} creep **/
     run: function(creep) {
         var flag = Game.flags['RestPlace'];
+        var flag1 = Game.flags['WarZone'];
 
         if(creep.memory.target_room != 'undefined') {
             if(creep.room.name == creep.memory.target_room) {
@@ -37,11 +38,17 @@ var roleRanger = {
             }
             else 
             {
-                var exitDir = creep.room.findExitTo(creep.memory.target_room);
-                var exit = creep.pos.findClosestByRange(exitDir);
+                //var exitDir = creep.room.findExitTo(creep.memory.target_room);
+                //var exit = creep.pos.findClosestByRange(exitDir);
                 //var exit = creep.pos.findClosestByRange(FIND_EXIT_LEFT);
+                //var exit = creep.pos.findClosestByRange(FIND_EXIT_RIGHT);
                 //var exit = creep.pos.findClosestByRange(FIND_EXIT_BOTTOM);
-                creep.moveTo(exit, {visualizePathStyle: {stroke: '#FF0000'}});
+                //creep.moveTo(exit, {visualizePathStyle: {stroke: '#FF0000'}});
+
+                if(flag1) {
+                    creep.moveTo(flag1, {visualizePathStyle: {stroke: '#ffffff'}});
+                }
+                
             }
         } else {
             creep.moveTo(flag, {visualizePathStyle: {stroke: '#ffffff'}});
