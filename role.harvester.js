@@ -13,16 +13,21 @@ var roleHarvester = {
             creep.say('unloading');
         }
         if(!creep.memory.unloading) {
-            var source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
-            if(source && creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                var path = creep.room.findPath(creep.pos, source.pos, {ignoreCreeps: true});
-                if(path.length > 0) {
-                    creep.move(path[0].direction);
-                    //creep.pos.createConstructionSite(STRUCTURE_ROAD);
-                } else {
-                    creep.say(`No way!`);
+            var sources = creep.room.find(FIND_SOURCES);
+            if(sources.length > 0)
+            {
+                if(creep.memory.path == 'undefine') {
+                    creep.memory.path = creep.pos.findPathTo(sources[0]);
                 }
-                //creep.moveTo(target);
+            }
+            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) 
+            {
+                creep.moveByPath(creep.memory.path, {visualizePathStyle: {stroke: '#ffffff'}});
+                //creep.pos.createConstructionSite(STRUCTURE_ROAD);
+            }
+            else
+            {
+                creep.memory.path = 'undefine';
             }
         }
         else {
@@ -39,11 +44,9 @@ var roleHarvester = {
                     var path = creep.pos.findPathTo(target);
                     if(path.length > 0) {
                         creep.move(path[0].direction);
-                        //creep.pos.createConstructionSite(STRUCTURE_ROAD);
                     } else {
                         creep.say(`No way!`);
                     }
-                    //creep.moveTo(target);
                 }
             } else {
                 if(creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
