@@ -9,12 +9,23 @@ var tower = require('tower');
 module.exports.loop = function () {
 
     Memory.ranger_target = 'undefined';
-    //Memory.ranger_target = 'W1N1';
+    //Memory.ranger_target = 'W9N9';
 
     building.run(Game.spawns.Spawn1);
 
     var towers = Game.spawns.Spawn1.room.find(FIND_STRUCTURES, {filter: {structureType: STRUCTURE_TOWER, my: true}});
     towers.forEach(tower.run);
+
+    var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
+    console.log('Harvesters: ' + harvesters.length);
+    var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
+    console.log('Upgraders: ' + upgraders.length);
+    var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
+    console.log('Builders: ' + builders.length);
+    var repairs = _.filter(Game.creeps, (creep) => creep.memory.role == 'repair');
+    console.log('Repairers: ' + repairs.length);
+    var rangers = _.filter(Game.creeps, (creep) => creep.memory.role == 'ranger');
+    console.log('Rangers: ' + rangers.length);
 
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
